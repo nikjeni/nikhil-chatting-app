@@ -21,7 +21,6 @@ clearButton.addEventListener("click", function () {
     output.innerHTML = "";
     feedback.innerHTML = "";
     message.value = "";
-    handle.value = "";
 })
 
 message.addEventListener("keypress", function () {
