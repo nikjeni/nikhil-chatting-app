@@ -1,26 +1,19 @@
 {
-  "name": "frost-chat",
+  "name": "simple-chat",
   "version": "1.0.0",
   "description": "A real-time chat app using WebSockets.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/therj/frost-chat.git"
-  },
-  "author": "",
+  "author": "Nikhil Gavali",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/therj/frost-chat/issues"
-  },
-  "homepage": "https://github.com/therj/frost-chat#readme",
   "dependencies": {
-    "express": "^4.16.2",
-    "socket.io": "^2.0.4"
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.14.12"
+    "nodemon": "^1.18.9"
   }
 }

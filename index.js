@@ -3,7 +3,7 @@ var app = express();
 var socket = require("socket.io");
 
 
-var server = app.listen(9090, function () {
+var server = app.listen(process.env.port || process.env.PORT || 9090, function () {
     console.log("Listening on port 9090");
 });
 

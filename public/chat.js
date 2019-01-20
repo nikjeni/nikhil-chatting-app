@@ -1,21 +1,28 @@
 //Create  connection
-var socket = io.connect("http://localhost:9090");
+var socket = io.connect("http://192.168.43.96:9090");
 
 //Query DOM
 var message = document.querySelector("#message");
 var handle = document.querySelector("#handle");
 var btn = document.querySelector("#send");
-var output  = document.querySelector("#output");
-var feedback  = document.querySelector("#feedback");
-
+var output = document.querySelector("#output");
+var feedback = document.querySelector("#feedback");
+var clearButton = document.querySelector('#clear');
 
 //Emit event
 btn.addEventListener("click", function () {
     socket.emit('chat', {
         handle: handle.value,
-        message:message.value
+        message: message.value
     });
 });
+
+clearButton.addEventListener("click", function () {
+    output.innerHTML = "";
+    feedback.innerHTML = "";
+    message.value = "";
+    handle.value = "";
+})
 
 message.addEventListener("keypress", function () {
     socket.emit("typing", handle.value);
@@ -23,7 +30,7 @@ message.addEventListener("keypress", function () {
 
 //Listen event
 socket.on("chat", function (data) {
-    output.innerHTML += "<p><strong>" + data.handle +":</strong>" + data.message + "</p>";
+    output.innerHTML += "<p><strong>" + data.handle + ":</strong>" + data.message + "</p>";
     feedback.innerHTML = "";
 });
 
