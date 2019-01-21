@@ -15,6 +15,7 @@ btn.addEventListener("click", function () {
         handle: handle.value,
         message: message.value
     });
+    message.value = "";
 });
 
 clearButton.addEventListener("click", function () {
@@ -23,8 +24,16 @@ clearButton.addEventListener("click", function () {
     message.value = "";
 })
 
-message.addEventListener("keypress", function () {
+message.addEventListener("keypress", function (e) {
     socket.emit("typing", handle.value);
+    var key = e.which || e.keyCode;
+    if (key === 13) {
+        socket.emit('chat', {
+            handle: handle.value,
+            message: message.value
+        });
+        message.value = "";
+    }
 });
 
 //Listen event
