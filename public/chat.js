@@ -8,6 +8,7 @@ var btn = document.querySelector("#send");
 var output = document.querySelector("#output");
 var feedback = document.querySelector("#feedback");
 var clearButton = document.querySelector('#clear');
+var count = 0;
 
 //Emit event
 btn.addEventListener("click", function () {
@@ -18,10 +19,17 @@ btn.addEventListener("click", function () {
     message.value = "";
 });
 
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+        document.title = "Nikhil Gavali's Chat App";
+    }
+})
+
 clearButton.addEventListener("click", function () {
     output.innerHTML = "";
     feedback.innerHTML = "";
     message.value = "";
+    document.title = "Nikhil Gavali's Chat App";
 })
 
 message.addEventListener("keypress", function (e) {
@@ -38,6 +46,13 @@ message.addEventListener("keypress", function (e) {
 
 //Listen event
 socket.on("chat", function (data) {
+    if (document.hidden) {
+        count++;
+        var newTitle = '(' + count + ')';
+        document.title = newTitle;
+    } else {
+        document.title = "Nikhil Gavali's Chat App";
+    }
     output.innerHTML += "<p><strong>" + data.handle + ":</strong>" + data.message + "</p>";
     feedback.innerHTML = "";
 });
