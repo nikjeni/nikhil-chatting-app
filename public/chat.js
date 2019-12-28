@@ -22,6 +22,7 @@ btn.addEventListener("click", function () {
 document.addEventListener("visibilitychange", () => {
     if (!document.hidden) {
         document.title = "Nikhil Gavali's Chat App";
+        count = 0;
     }
 })
 
@@ -30,6 +31,7 @@ clearButton.addEventListener("click", function () {
     feedback.innerHTML = "";
     message.value = "";
     document.title = "Nikhil Gavali's Chat App";
+    count = 0;
 })
 
 message.addEventListener("keypress", function (e) {
@@ -52,8 +54,10 @@ socket.on("chat", function (data) {
         document.title = newTitle;
     } else {
         document.title = "Nikhil Gavali's Chat App";
+        count = 0;
     }
     output.innerHTML += "<p><strong>" + data.handle + ":</strong>" + data.message + "</p>";
+    output.scrollIntoView(false);
     feedback.innerHTML = "";
 });
 
